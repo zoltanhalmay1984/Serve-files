@@ -10,6 +10,7 @@ const formHTML = (user) => `
 <form id="form" data-id="${user.id}">
   ${inputHTML(user.name)}
   ${buttonHTML("Save", "PATCH")}
+  ${buttonHTML("Replace", "PUT")}
 </form>
 `;
 
@@ -32,7 +33,16 @@ const handleSubmit = async e => {
 
     const method = e.submitter.getAttribute("data-method");
     const id = parseInt(e.target.getAttribute("data-id"));
-    const result = await fetchData(url, id, method, method === "PATCH" ? { name: e.target.querySelector("input").value } : { name: "" });
+    const result = await fetchData(
+        url,
+        id,
+        method,
+        method === "PATCH" ?
+            { name: e.target.querySelector("input").value } :
+            method === "PUT" ?
+                { name: e.target.querySelector("input").value, id } :
+                { name: "" }
+    );
     if (result.state === 'DONE') {
         const users = await fetchData(url);
         document.getElementById("users").outerHTML = usersHTML(users);

@@ -1,1 +1,24 @@
-{"users":[{"id":1,"name":"Paul","age":16},{"id":2,"name":"Leto II","age":3500},{"id":3,"name":"Duncan Idaho","age":32},{"id":4,"name":"Moneo","age":56}]}
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Paul",
+            "age": 16
+        },
+        {
+            "id": 2,
+            "name": "Reverend Mother Gaius Helen Mohaim",
+            "age": 3500
+        },
+        {
+            "id": 3,
+            "name": "Duncan Idaho",
+            "age": 32
+        },
+        {
+            "id": 4,
+            "name": "Moneo",
+            "age": 56
+        }
+    ]
+}

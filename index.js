@@ -53,6 +53,21 @@ app.patch('/users/:userId', async (req, res) => {
     }
 });
 
+app.put('/users/:userId', async (req, res) => {
+    const data = await fs.readFile(dataRoute, 'utf8');
+    const { users /*, age, id */ } = JSON.parse(data); // a JSON.parse(data) users key value-ját menti ki users változóba (data destructuring)
+    const userId = parseInt(req.params.userId);
+    const user = users.find(user => user.id === userId);
+    if (user) {
+        user.name = req.body.name;
+        user.id = req.body.id;
+        await fs.writeFile(dataRoute, JSON.stringify({ users }), 'utf8');
+        return res.send({ state: "DONE" });
+    } else {
+        return res.status(404).send({ state: 'User not found' });
+    }
+});
+
 app.listen(3000, () => {
     console.log(`guild navigators are channeling http://127.0.0.1:3000 to your browser`);
 });
